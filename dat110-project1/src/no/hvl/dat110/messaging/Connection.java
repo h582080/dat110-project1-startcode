@@ -33,30 +33,69 @@ public class Connection {
 	}
 
 	public void send(Message message) {
-
-		byte[] data;
-		
-		// TODO - START
-		// encapsulate the data contained in the message and write to the output stream
-		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
 			
-		// TODO - END
+			byte[] data = message.getData();
+			
+			try {				
+	
+				outStream.write(data);
+				
+				outStream.close();
+				
+				socket.close();
+						
+			} catch (IOException ex){
+				System.out.println("TCP client: " + ex.getMessage());
+				ex.printStackTrace();
+				System.exit(1);
+			}
+			
+			// TODO - START
+			// encapsulate the data contained in the message and write to the output stream
+			
+		
+			// TODO - END
 
 	}
+
+
 
 	public Message receive() {
 
 		Message message = null;
-		byte[] data;
+		byte[] data = new byte[128];
+		
+		try {
+			
+			System.out.print("TCP Receiver starting");
+			
+		    System.out.println("TCP Receiver reading");
+		    inStream.read(data);
+		    
+		    System.out.print("TCP Receiver received: ");
+		    for (byte b : data) {
+		    	System.out.print((byte) b);
+		    }
+		    System.out.println();
+		    
+		    inStream.close();
+		    
+		    socket.close();
+		    	    
+			
+		} catch (IOException ex) {
+
+			System.out.println("TCPServer: " + ex.getMessage());
+			ex.printStackTrace();
+			System.exit(1);
+
+		}
+		System.out.println("TCP Receiver stopping");
 		
 		// TODO - START
 		// read a segment from the input stream and decapsulate into message
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-		
+
 		// TODO - END
 		
 		return message;

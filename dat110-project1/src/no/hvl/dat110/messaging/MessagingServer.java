@@ -25,18 +25,28 @@ public class MessagingServer {
 
 	// accept an incoming connection from a client
 	public Connection accept() {
-
+		
 		Connection connection = null;
+		
+		try {
+			Socket connectionSocket = welcomeSocket.accept();
+			connection = new Connection(connectionSocket);
+			
+			connectionSocket.close();
+			
+		} catch (IOException ex) {
+
+			System.out.println("TCPServer: " + ex.getMessage());
+			ex.printStackTrace();
+			System.exit(1);
+
+		}
+		
+		return connection;
 
 		// TODO - START
 		// accept TCP connection on welcome socket and create connection
 
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - END
-		
-		return connection;
 
 	}
 

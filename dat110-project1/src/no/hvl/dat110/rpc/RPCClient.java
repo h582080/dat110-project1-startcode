@@ -15,48 +15,24 @@ public class RPCClient {
 	
 	public void connect() {
 		
-		// TODO - START
-		// connect using the underlying messaging layer connection
-		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - END
+		msgclient.connect();
 	}
 	
 	public void disconnect() {
 		
-		// TODO - START
-		// disconnect/close the underlying messaging connection
-		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - END
+		connection.close();
 	}
 	
 	public byte[] call(byte rpcid, byte[] params) {
 		
-		byte[] returnval = null;
+		byte[] returnval = new byte[params.length+1];
 		
-		// TODO - START 
+		returnval[0] = rpcid;
+	    
+		for(int i=0; i<=params.length; i++) {
+			returnval[i+1] = params[i];
+		}			
 		
-		/* 
-		 * 
-		Make a remote call on the RPC server by sending an RPC request message
-		and receive an RPC reply message
-		
-		params is the marshalled parameters from the client-stub
-				
-		The rpcid, params, and return value must be encapsulated/decapsulated
-		according to the RPC message format
-			
-		*/
-				
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - END
 		return returnval;
 		
 	}
